@@ -48,7 +48,7 @@ public final class RealmDBStackImpl: RealmDBStack {
             
             return Disposables.create {}
         }
-        .observe(on: ConcurrentDispatchQueueScheduler(qos: .userInitiated))
+        .subscribe(on: ConcurrentDispatchQueueScheduler(qos: .userInitiated))
     }
     
     public func read<T>(identifier: String) -> Observable<T> where T : DBRepresentable {
@@ -74,7 +74,7 @@ public final class RealmDBStackImpl: RealmDBStack {
             
             return Disposables.create {}
         }
-        .observe(on: ConcurrentDispatchQueueScheduler(qos: .userInitiated))
+        .subscribe(on: ConcurrentDispatchQueueScheduler(qos: .userInitiated))
     }
     
     public func write<T>(representables: [T]) -> Observable<[T]> where T : DBRepresentable {
@@ -100,7 +100,7 @@ public final class RealmDBStackImpl: RealmDBStack {
             
             return Disposables.create {}
         }
-        .observe(on: ConcurrentDispatchQueueScheduler(qos: .userInitiated))
+        .subscribe(on: ConcurrentDispatchQueueScheduler(qos: .userInitiated))
     }
     
     public func delete<T>(representables: [T]) -> Observable<Void> where T : DBRepresentable {
@@ -130,7 +130,7 @@ public final class RealmDBStackImpl: RealmDBStack {
             
             return Disposables.create {}
         }
-        .observe(on: ConcurrentDispatchQueueScheduler(qos: .userInitiated))
+        .subscribe(on: ConcurrentDispatchQueueScheduler(qos: .userInitiated))
     }
     
     public func deleteAll<T: DBRepresentable>(type: T.Type) -> Observable<Void> {
@@ -152,7 +152,7 @@ public final class RealmDBStackImpl: RealmDBStack {
             
             return Disposables.create {}
         }
-        .observe(on: ConcurrentDispatchQueueScheduler(qos: .userInitiated))
+        .subscribe(on: ConcurrentDispatchQueueScheduler(qos: .userInitiated))
     }
     
     public func observe<T>(type: T.Type) -> Observable<Void> where T : DBRepresentable {
@@ -172,6 +172,7 @@ public final class RealmDBStackImpl: RealmDBStack {
                 return Disposables.create()
             }
         }
+        .subscribe(on: ConcurrentDispatchQueueScheduler(qos: .userInitiated))
     }
     
     private func realmStore<T>(type: T.Type) throws -> Realm where T : DBRepresentable {
