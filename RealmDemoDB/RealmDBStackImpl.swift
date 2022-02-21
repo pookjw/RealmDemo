@@ -34,7 +34,6 @@ public final class RealmDBStackImpl: RealmDBStack {
                     .objects(RealmDB.self)
                     .allObjects
                     .map { db throws -> T in
-                        print(db.json)
                         guard let data: Data = db.json.data(using: .utf8) else {
                             throw RealmDBStackImplError.nsDataConversionFailed
                         }
